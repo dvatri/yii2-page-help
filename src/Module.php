@@ -12,7 +12,7 @@ class Module extends \yii\base\Module
 	public function init()
     {
         parent::init();
-		if (!Yii::$app->request->isAjax) {
+		if (($app instanceof \yii\web\Application) && !Yii::$app->request->isAjax) {
 			$this->layout = Yii::$app->layout;
 			$this->layoutPath = Yii::$app->layoutPath;
 		}

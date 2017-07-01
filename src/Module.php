@@ -35,7 +35,7 @@ class Module extends \yii\base\Module
         Yii::$app->i18n->translations['tunect/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-			'basePath' => '@vendor/tunect/yii2-page-help/messages',
+			'basePath' => '@vendor/tunect/yii2-page-help/src/messages',
             'fileMap' => [
                 'tunect/page-help' => 'main.php',
             ],

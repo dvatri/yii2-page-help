@@ -1,6 +1,8 @@
 <?php
 namespace tunect\Yii2PageHelp;
 
+use Yii;
+
 class Module extends \yii\base\Module
 {
     public static $moduleName = 'help';
@@ -16,5 +18,17 @@ class Module extends \yii\base\Module
 			return $this->roles;
 		}
 		return [$this->roles];
+	}
+
+	public function registerTranslations()
+    {
+        Yii::$app->i18n->translations['tunect/*'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+			'basePath' => '@vendor/tunect/yii2-page-help/messages',
+            'fileMap' => [
+                'tunect/page-help' => 'main.php',
+            ],
+        ];
 	}
 }

@@ -2,7 +2,7 @@
 namespace tunect\Yii2PageHelp\models;
 
 use tunect\Yii2PageHelp\Module;
-
+use Yii;
 /**
  * This is the model class for table "{{%help_page}}".
  *
@@ -39,4 +39,14 @@ class HelpPage extends \yii\db\ActiveRecord
     {
         return new HelpPageQuery(get_called_class());
     }
+
+	public function attributeLabels()
+	{
+		return [
+			'status' => Yii::t('tunect/page-help', 'Status'),
+			'created_at' => Yii::t('tunect/page-help', 'Created at'),
+			'page' => Yii::t('tunect/page-help', 'Page'),
+			'content' => Yii::t('tunect/page-help', 'Content'),
+		];
+	}
 }

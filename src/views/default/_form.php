@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 	</div>
 	
 	<div class="form-group">
-		<?= Html::submitButton('Save', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+		<?= Html::submitButton(\Yii::t('tunect/page-help', 'Save'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	</div>
 
     <?php ActiveForm::end(); ?>

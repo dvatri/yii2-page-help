@@ -48,10 +48,6 @@ class HelpPageSearch extends HelpPage
             return $dataProvider;
         }
 
-		if ($this->status === null || $this->status === '') {
-			$query->andWhere(['<>', '[[status]]', self::STATUS_INACTIVE]);
-		}
-
         // grid filtering conditions
         $query->andFilterWhere([
 			'[[id]]' => $this->id,

@@ -49,4 +49,9 @@ class HelpPage extends \yii\db\ActiveRecord
 			'content' => Yii::t('tunect/page-help', 'Content'),
 		];
 	}
+
+	public static function hasHelpForPage($page)
+	{
+		return (bool) self::find()->active()->andWhere(['page' => $page])->select('*')->scalar();
+	}
 }

@@ -6,6 +6,8 @@ use tunect\Yii2PageHelp\models\HelpPage;
 use tunect\Yii2PageHelp\models\HelpPageSearch;
 use tunect\Yii2PageHelp\Module;
 
+use yii\web\NotFoundHttpException;
+
 class DefaultController extends \yii\web\Controller
 {
     public function behaviors()
@@ -55,7 +57,7 @@ class DefaultController extends \yii\web\Controller
 		$model->status = $model::STATUS_ACTIVE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -68,7 +70,7 @@ class DefaultController extends \yii\web\Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -78,11 +80,22 @@ class DefaultController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $model->status = $model::STATUS_INACTIVE;
-		$model->save(false);
+        $this->findModel($id)->delete();
         return $this->redirect(Yii::$app->request->referrer);
     }
+
+	public function actionForPage($page)
+	{
+		$model = HelpPage::find()->active()->andWhere(['page' => urldecode($page)])->orderBy(['created_at' => SORT_DESC])->one();
+
+		if (null === $model) {
+			throw new NotFoundHttpException(Yii::t('yii', 'The requested page does not exist.'));
+		}
+
+		return $this->render('view', [
+            'model' => $model,
+        ]);
+	}
 
 	/**
      * Finds the HelpPage model based on its primary key value.

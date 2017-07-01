@@ -9,6 +9,16 @@ class Module extends \yii\base\Module
 	public $tableName = '{{%help_page}}';
 	public $roles = ['@'];
 
+	public function init()
+    {
+        parent::init();
+		if (!Yii::$app->request->isAjax) {
+			$this->layout = Yii::$app->layout;
+			$this->layoutPath = Yii::$app->layoutPath;
+		}
+		$this->registerTranslations();
+    }
+
 	public function getRoles()
 	{
 		if (is_callable($this->roles)) {

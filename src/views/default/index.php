@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
+use tunect\Yii2PageHelp\models\HelpPage;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel tunect\Yii2PageHelp\models\HelpPageSearch */
@@ -26,6 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'content',
 				'format' => 'ntext',
 				'contentOptions' => ['class' => 'small'],
+				'value' => function (HelpPage $model) {
+					return StringHelper::truncateWords($model->content, 5);
+				},
+			],
+			[
+				'class' => 'yii\grid\ActionColumn',
 			],
         ],
     ]); ?>

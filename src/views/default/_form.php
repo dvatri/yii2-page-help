@@ -13,14 +13,11 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
 	<div class="row">
-		<div class="col-md-6">
-			<?= $form->field($model, 'status')->dropDownList([
-				$model::STATUS_ACTIVE => 'Active',
-				$model::STATUS_INACTIVE => 'Inactive',
-			]) ?>
+		<div class="col-md-12">
+			<?= $form->field($model, 'status')->checkbox() ?>
 
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<?= $form->field($model, 'page')->textInput(['maxlength' => true]) ?>
 		</div>
 		<div class="col-md-12">

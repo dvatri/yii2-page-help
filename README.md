@@ -38,7 +38,7 @@ Module settings can be changed in app config:
 
 By default `'@'` (any authenticated user) role will be used, but any other role(s) can be defined in `roles` module property (see example above). It can take scalar value, array or callable.
 
-##Usage
+## Usage
 
 To create or update help for any page of your website visit `/<module_name>/index` page (by default `/help/index`). `<module_name>` is the name module was registred with, if you changed `Module::$moduleName` - use your value.
 

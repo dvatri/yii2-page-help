@@ -42,9 +42,18 @@ By default `'@'` (any authenticated user) role will be used, but any other role(
 
 To create or update help for any page of your website visit `/<module_name>/index` page (by default `/help/index`). `<module_name>` is the name module was registred with, if you changed `Module::$moduleName` - use your value.
 
-`Page` field should contain page path in format `<controller>/<action>`, check looks like:
+`Page` field should contain page path in format `<controller>/<action>` OR `<module>/<controller>/<action>`, check looks like:
 
-	Yii::$app->controller->id . '/' . Yii::$app->controller->action->id
+	$this->page = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
+	// Add module prefix
+	if (Yii::$app->controller->module->id !== Yii::$app->id) {
+		$this->page = Yii::$app->controller->module->id . '/' . $this->page;
+	}
+
+Module name being checked only if current action is not an application's controller action:
+
+* `help/default/index` for `help` module `default` controller and `index` action
+* `site/login` for main application `site` controller and `login` action
 
 `Content` field can contain any help info with Markdown support. This content will be displayed in modal available for particular page.
 
@@ -59,4 +68,3 @@ On button click modal will be displayed. Button will be visible only if help rec
 ## TODO
 
 * Implement global search
-* Implement module support (in addition to controller and action match check)

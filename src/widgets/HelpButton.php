@@ -18,6 +18,12 @@ class HelpButton extends Button
 	{
 		parent::init();
 		$this->page = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id;
+
+		// Add module prefix
+		if (Yii::$app->controller->module->id !== Yii::$app->id) {
+			$this->page = Yii::$app->controller->module->id . '/' . $this->page;
+		}
+
 		$this->options['class'] = 'showModalButton glyphicon glyphicon-question-sign btn';
 		$this->options['href'] = Url::toRoute(['/' . Module::$moduleName . '/for-page', 'page' => $this->page]);
 	}

@@ -38,10 +38,25 @@ Module settings can be changed in app config:
 
 By default `'@'` (any authenticated user) role will be used, but any other role(s) can be defined in `roles` module property (see example above). It can take scalar value, array or callable.
 
-## Errors info
+##Usage
 
-Existing help pages grid view available on page `/help` (the name module was registred with, if you changed `Module::$moduleName` - use your value as a path).
+To create or update help for any page of your website visit `/<module_name>/index` page (by default `/help/index`). `<module_name>` is the name module was registred with, if you changed `Module::$moduleName` - use your value.
+
+`Page` field should contain page path in format `<controller>/<action>`, check looks like:
+
+	Yii::$app->controller->id . '/' . Yii::$app->controller->action->id
+
+`Content` field can contain any help info with Markdown support. This content will be displayed in modal available for particular page.
+
+To add help modal button to layout just add widget to any place in view (layout) file (e.g. next to page header `h1`):
+
+	<?= \tunect\Yii2PageHelp\widgets\HelpButton::widget(); ?>
+
+On button click modal will be displayed. Button will be visible only if help record exists for current page.
+
+(the name module was registred with, if you changed `Module::$moduleName` - use your value as a path).
 
 ## TODO
 
 * Implement global search
+* Implement module support (in addition to controller and action match check)

@@ -9,4 +9,5 @@ return [
 	'Created at' => 'Дата создания',
 	'Content' => 'Содержимое (Markdown)',
 	'Save' => 'Сохранить',
+	'Visit page' => 'Открыть страницу',
 ];

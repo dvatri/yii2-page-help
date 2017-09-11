@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 			<?= $form->field($model, 'page')->textInput(['maxlength' => true]) ?>
 		</div>
 		<div class="col-md-12">
-			<?= $form->field($model, 'content')->textarea() ?>
+			<?= $form->field($model, 'content')->textarea(['rows' => '18']) ?>
 		</div>
 
 	</div>

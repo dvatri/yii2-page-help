@@ -25,6 +25,7 @@ class HelpPage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+			[['page'], 'trim'],
             [['content'], 'safe'],
 			[['page', 'status'], 'required'],
             [['page'], 'string', 'max' => 255],
